@@ -1,0 +1,75 @@
+.sd {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sd__layer {
+  stroke-width: 1.5;
+  transition: opacity 0.6s var(--ease), stroke 0.5s;
+  transform-origin: 210px 210px;
+}
+
+/* resting state, all three present, none shouting */
+.sd__cold  { stroke: rgba(116, 174, 201, 0.42); opacity: 0.55; }
+.sd__vib   { stroke: rgba(175, 184, 97, 0.45); opacity: 0.55; }
+.sd__press { stroke: rgba(126, 148, 190, 0.5); opacity: 0.55; }
+
+.sd[data-active='cold']     .sd__cold  { stroke: #8FC6DF; opacity: 1; }
+.sd[data-active='vibration'].sd        { }
+.sd[data-active='vibration'] .sd__vib  { stroke: #C4CC87; opacity: 1; }
+.sd[data-active='pressure']  .sd__press{ stroke: #93A9D6; opacity: 1; }
+
+.sd__ring { stroke-width: 1.2; }
+
+/* cold: slow rotation of the crystal spokes */
+.sd__cold { animation: sd-spin 56s linear infinite; }
+.sd[data-active='cold'] .sd__cold { animation-duration: 26s; }
+
+/* vibration: expanding wavefronts */
+.sd__wave {
+  stroke-width: 1.4;
+  opacity: 0;
+  transform-origin: 210px 210px;
+  animation: sd-wave 3.4s var(--ease-soft) infinite;
+}
+.sd__wave--2 { animation-delay: 1.13s; }
+.sd__wave--3 { animation-delay: 2.26s; }
+.sd__sine { stroke-width: 1.6; opacity: 0.8; animation: sd-sine 1.1s linear infinite; }
+
+/* pressure: inward pulse */
+.sd__press { animation: sd-press 4.2s var(--ease-soft) infinite; }
+.sd__stud { fill: currentColor; stroke: none; }
+.sd__arrow { stroke-width: 1.7; }
+
+/* the site */
+.sd__site { stroke: var(--sage-400); }
+.sd__guide { stroke-width: 1.8; stroke-dasharray: 34 14; animation: sd-spin 22s linear infinite reverse; transform-origin: 210px 210px; }
+.sd__cross { stroke-width: 1.4; opacity: 0.75; }
+.sd__pin { fill: var(--sage-400); stroke: none; }
+
+@keyframes sd-spin { to { transform: rotate(360deg); } }
+
+@keyframes sd-wave {
+  0%   { opacity: 0; transform: scale(0.62); }
+  18%  { opacity: 0.95; }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+@keyframes sd-sine {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(26px); }
+}
+
+@keyframes sd-press {
+  0%, 100% { transform: scale(1); }
+  48%      { transform: scale(0.955); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd__cold, .sd__wave, .sd__sine, .sd__press, .sd__guide { animation: none; }
+  .sd__wave { opacity: 0.5; }
+}

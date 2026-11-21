@@ -1,0 +1,6 @@
+/* Self-hosted so the page never waits on a third party, and latin-only so the
+   byte cost stays honest. */
+@import '@fontsource-variable/archivo/wght.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+@import '@fontsource/newsreader/latin-400-italic.css';

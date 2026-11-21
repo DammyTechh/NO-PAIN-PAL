@@ -1,0 +1,125 @@
+.fd {
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+  isolation: isolate;
+}
+
+/* ambient light pooling behind the body */
+.fd__halo {
+  position: absolute;
+  inset: 4% 2% 10%;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(52% 46% at 50% 44%, rgba(86, 110, 166, 0.42), transparent 72%),
+    radial-gradient(70% 60% at 52% 52%, rgba(52, 126, 158, 0.26), transparent 74%);
+  filter: blur(46px);
+  opacity: 0.85;
+  animation: fd-pulse 9s var(--ease-soft) infinite;
+}
+.fd--light .fd__halo {
+  background:
+    radial-gradient(54% 46% at 50% 46%, rgba(175, 184, 97, 0.44), transparent 70%),
+    radial-gradient(72% 62% at 50% 54%, rgba(25, 69, 92, 0.24), transparent 74%);
+}
+
+.fd__body {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform:
+    translate3d(var(--px, 0px), var(--py, 0px), 0)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  will-change: transform;
+}
+
+/* the never-ending idle drift lives on its own layer so the pointer
+   maths above never has to fight the keyframes */
+.fd__drift {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: fd-drift 13s ease-in-out infinite;
+}
+
+.fd__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  filter:
+    drop-shadow(0 30px 44px rgba(4, 16, 24, 0.52))
+    drop-shadow(0 4px 9px rgba(4, 16, 24, 0.38));
+}
+.fd--light .fd__img {
+  filter:
+    drop-shadow(0 30px 44px rgba(10, 28, 38, 0.3))
+    drop-shadow(0 4px 9px rgba(10, 28, 38, 0.18));
+}
+
+/* silhouette-locked specular pass, moves with the tilt */
+.fd__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    104deg,
+    transparent 30%,
+    rgba(214, 232, 240, 0.2) var(--sheen, 50%),
+    transparent 72%
+  );
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+/* contact shadow on the floor */
+.fd__ground {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 1%;
+  width: 56%;
+  height: 7%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(3, 10, 15, 0.6), transparent 70%);
+  filter: blur(18px);
+  scale: var(--shadow-scale, 1);
+  animation: fd-ground 13s ease-in-out infinite;
+}
+.fd--light .fd__ground {
+  background: radial-gradient(50% 50% at 50% 50%, rgba(10, 28, 38, 0.3), transparent 70%);
+}
+
+@keyframes fd-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(0deg) rotateY(0deg); }
+  25%      { transform: translate3d(5px, -15px, 26px) rotateZ(-1.1deg) rotateY(3.4deg); }
+  50%      { transform: translate3d(0, -23px, 10px) rotateZ(0.5deg) rotateY(0deg); }
+  75%      { transform: translate3d(-5px, -12px, 26px) rotateZ(1.2deg) rotateY(-3.4deg); }
+}
+
+@keyframes fd-ground {
+  0%, 100% { opacity: 0.85; width: 56%; }
+  50%      { opacity: 0.5; width: 46%; }
+}
+
+@keyframes fd-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fd__drift, .fd__ground, .fd__halo { animation: none; }
+  .fd__sheen { display: none; }
+}

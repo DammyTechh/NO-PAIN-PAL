@@ -1,0 +1,86 @@
+/* ------------------------------------------------------------------
+   NO PAIN PAL, design tokens
+   Palette sampled directly from the brand mark + product renders:
+   petrol #19455C · sage #AFB861 · device indigo #2B395B
+-------------------------------------------------------------------*/
+:root {
+  /* --- dark grounds: deep teal rather than near-black --- */
+  --ground:      #16394A;
+  --ground-alt:  #1B4256;
+  --ground-deep: #112E3C;
+
+  /* --- petrol (primary) --- */
+  --petrol-950: #0B2432;
+  --petrol-900: #103040;
+  --petrol-850: #0D2531;
+  --petrol-800: #11303F;
+  --petrol-700: #153B4D;
+  --petrol-600: #19455C;
+  --petrol-500: #22607F;
+  --petrol-400: #3D83A5;
+  --petrol-300: #74AEC9;
+
+  /* --- sage (accent) --- */
+  --sage-700: #6E7638;
+  --sage-600: #8D9748;
+  --sage-500: #AFB861;
+  --sage-400: #C4CC87;
+  --sage-300: #DADFB4;
+  --sage-100: #EFF1DF;
+
+  /* --- indigo (lifted off the device trim) --- */
+  --indigo-700: #1E2A45;
+  --indigo-600: #2B395B;
+  --indigo-500: #3E5281;
+
+  /* --- bone (ground) --- */
+  --bone-50:  #FBFAF6;
+  --bone-100: #F4F2EA;
+  --bone-200: #EFEDE3;
+  --bone-300: #DAD6C6;
+  --bone-400: #BDB8A4;
+
+  /* --- semantic --- */
+  --ink:          var(--petrol-950);
+  --ink-soft:     #2C4350;
+  --ink-mute:     #5E7480;
+  --paper:        var(--bone-100);
+  --paper-raised: #FFFDF8;
+  --line:         rgba(10, 28, 38, 0.11);
+  --line-strong:  rgba(10, 28, 38, 0.2);
+
+  --on-dark:        #EFF2EE;
+  --on-dark-soft:   rgba(230, 238, 236, 0.82);
+  --on-dark-mute:   rgba(212, 226, 225, 0.64);
+  --line-dark:      rgba(196, 218, 220, 0.21);
+  --line-dark-soft: rgba(196, 218, 220, 0.11);
+
+  /* --- type --- */
+  --font-display: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+
+  --fs-mega:    clamp(3.4rem, 10.2vw, 10.5rem);
+  --fs-display: clamp(2.9rem, 7.4vw, 6.6rem);
+  --fs-h1:      clamp(2.4rem, 5.6vw, 4.75rem);
+  --fs-h2:      clamp(2rem, 4.2vw, 3.4rem);
+  --fs-h3:      clamp(1.35rem, 2vw, 1.75rem);
+  --fs-h4:      clamp(1.1rem, 1.35vw, 1.28rem);
+  --fs-lead:    clamp(1.1rem, 1.55vw, 1.45rem);
+  --fs-body:    clamp(1rem, 1.05vw, 1.08rem);
+  --fs-small:   clamp(0.875rem, 0.95vw, 0.95rem);
+  --fs-label:   clamp(0.66rem, 0.76vw, 0.76rem);
+
+  /* --- space --- */
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --section-y: clamp(5.5rem, 11vw, 11rem);
+  --max: 1440px;
+  --measure: 62ch;
+
+  /* --- motion --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 18px;
+  --radius-lg: 28px;
+}
