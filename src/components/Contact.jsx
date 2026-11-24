@@ -9,7 +9,7 @@ export default function Contact() {
       <div className="contact__glow" aria-hidden="true" />
       <div className="shell contact__shell">
         <p className="eyebrow" data-reveal>
-          <span className="eyebrow__idx">09</span> Next
+          <span className="eyebrow__idx">10</span> Next
         </p>
 
         <h2 className="contact__title" data-reveal style={{ '--d': '70ms' }}>

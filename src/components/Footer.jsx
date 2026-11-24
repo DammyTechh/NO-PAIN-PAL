@@ -16,6 +16,7 @@ const COLS = [
       ['Clinical use', '#use'],
       ['Assurance', '#assurance'],
       ['Glossary', '#reference'],
+      ['Team', '#team'],
     ],
   },
   {

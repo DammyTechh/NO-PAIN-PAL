@@ -7,6 +7,7 @@ import Protocol from './components/Protocol';
 import ClinicalUse from './components/ClinicalUse';
 import Assurance from './components/Assurance';
 import Reference from './components/Reference';
+import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import useReveal from './hooks/useReveal';
@@ -27,6 +28,7 @@ export default function App() {
         <ClinicalUse />
         <Assurance />
         <Reference />
+        <Team />
         <Contact />
       </main>
       <Footer />
